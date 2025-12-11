@@ -1,4 +1,5 @@
 .Xil
 *.bit
 clockInfo.txt
+output.txt
 .nvim
