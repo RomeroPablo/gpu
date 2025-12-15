@@ -2,7 +2,7 @@
 
 module top_tb;
     reg clk = 0;
-    wire [7:0] led;
+    wire [15:0] led;
 
     // generate clock (100 MHz)
     always #5 clk = ~clk;  // 10 ns period

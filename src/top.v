@@ -1,13 +1,10 @@
 `timescale 1ns/1ps
 
-module top(
-    input  wire clk,
-    output wire [7:0] led
-);
-    reg [25:0] counter = 0;
+module top( input wire clk, input wire btn, input wire [15:0] sw, output wire [15:0] led,
+            output wire [3:0] vgaRed,  output wire [3:0] vgaBlue,  output wire [3:0] vgaGreen,
+            output wire Hsync, output wire Vsync);
 
-    always @(posedge clk)
-        counter <= counter + 1;
+    io_pwm(clk, sw, led);
+    display(clk, btn, sw[11:0], vgaRed, vgaBlue, vgaGreen, Hsync, Vsync);
 
-    assign led = counter[25:10];
 endmodule
