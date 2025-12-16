@@ -14,7 +14,6 @@ module display( input clk, input reset, input wire [11:0] sw,
     parameter VR = 2;
     parameter VMAX = VD+VF+VB+VR-1;
 
-    // divide 100 MHz down to a 25 MHz pixel tick
     reg [1:0] subClk;
     wire pixel_tick;
     always @(posedge clk or posedge reset)
@@ -23,7 +22,7 @@ module display( input clk, input reset, input wire [11:0] sw,
         else
             subClk <= subClk + 1;
 
-    assign pixel_tick = (subClk == 0); // tick asserted 1/4 of the time
+    assign pixel_tick = (subClk == 0);
 
     reg  h_sync_reg,  v_sync_reg;
     reg  h_sync_next, v_sync_next;
@@ -31,7 +30,6 @@ module display( input clk, input reset, input wire [11:0] sw,
     reg [9:0] h_count_reg, h_count_next;
     reg [9:0] v_count_reg, v_count_next;
 
-    // update registers on the master clock, gated by the 25 MHz tick
     always @(posedge clk or posedge reset) begin
         if (reset) begin
             v_count_reg <= 0;
@@ -46,9 +44,7 @@ module display( input clk, input reset, input wire [11:0] sw,
         end
     end
 
-    // next-state logic, only advances when pixel_tick is high
     always @* begin
-        // defaults hold value when not ticking
         h_count_next = h_count_reg;
         v_count_next = v_count_reg;
         h_sync_next  = h_sync_reg;
@@ -72,7 +68,6 @@ module display( input clk, input reset, input wire [11:0] sw,
 
     wire video_on = (h_count_reg < HD) && (v_count_reg < VD);
 
-    // capture switch color and gate output to active video region
     reg [11:0] rgb_reg;
     always @(posedge clk or posedge reset)
         if (reset)
