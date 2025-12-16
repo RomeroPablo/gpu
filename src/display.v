@@ -1,7 +1,8 @@
+`timescale 1ns/1ps
+
 module display( input clk, input reset, input wire [11:0] sw,
                 output wire [3:0] vgaRed, output wire [3:0] vgaBlue, output wire [3:0] vgaGreen,
                 output wire Hsync, output wire Vsync );
-
     parameter HD = 640;
     parameter HF = 48;
     parameter HB = 16;

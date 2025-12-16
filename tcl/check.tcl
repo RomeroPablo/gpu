@@ -1,4 +1,4 @@
-read_verilog {src/top.v src/io_pwm.v src/display.v}
+read_verilog {src/top.v src/sw_pwm.v src/display.v}
 
 read_xdc xdc/basys3.xdc
 
