@@ -2,3 +2,5 @@
 .nvim
 *.bit
 *.txt
+*.log
+artifacts/

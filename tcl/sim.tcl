@@ -1,12 +1,25 @@
 set proj_root [pwd]
-set out_dir "$proj_root/artifacts"
+set dut [lindex $argv 0]
+
+if {$dut eq ""} {
+puts "error: missing dut name"
+exit 1
+}
+
+set out_dir "$proj_root/artifacts/${dut}"
 file mkdir $out_dir
 cd $out_dir
 
-exec xvlog -sv $proj_root/src/sw_pwm.v
-exec xvlog -sv $proj_root/sim/_sw_pwm.v
+set src_file "$proj_root/src/${dut}.v"
+set tb_file "$proj_root/sim/_${dut}.v"
+set top "tb_${dut}"
+set sim "sim_${dut}"
 
-exec xelab -debug typical tb_sw_pwm -s sim_sw_pwm
+set env(SIM_VCD_NAME) "${sim}.vcd"
 
-# Run and capture a WDB for viewing in Vivado/xsim GUI
-exec xsim sim_sw_pwm -runall -vcdfile sim_sw_pwm.vcd
+exec xvlog -sv $src_file
+exec xvlog -sv $tb_file
+exec xelab -debug typical $top -s $sim
+exec xsim $sim -wdb ${sim}.wdb -tclbatch $proj_root/tcl/dump_vcd.tcl
+
+exit
