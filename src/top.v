@@ -4,7 +4,10 @@ module top( input wire clk, input wire btn, input wire [15:0] sw, output wire [1
             output wire [3:0] vgaRed,  output wire [3:0] vgaBlue,  output wire [3:0] vgaGreen,
             output wire Hsync, output wire Vsync);
 
+    wire [11:0] col;
+    assign col = 12'b0000_1111_0000;
+
     sw_pwm(clk, sw, led);
-    display(clk, btn, sw[11:0], vgaRed, vgaBlue, vgaGreen, Hsync, Vsync);
+    display(clk, btn, col, vgaRed, vgaBlue, vgaGreen, Hsync, Vsync);
 
 endmodule

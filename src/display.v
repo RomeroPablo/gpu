@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module display( input clk, input reset, input wire [11:0] sw,
+module display( input clk, input reset, input wire [9:0] rgb,
                 output wire [3:0] vgaRed, output wire [3:0] vgaBlue, output wire [3:0] vgaGreen,
                 output wire Hsync, output wire Vsync );
     parameter HD = 640;
@@ -74,11 +74,13 @@ module display( input clk, input reset, input wire [11:0] sw,
         if (reset)
             rgb_reg <= 0;
         else
-            rgb_reg <= sw;
+            rgb_reg <= rgb;
 
     assign Hsync = h_sync_reg;
     assign Vsync = v_sync_reg;
+
     assign vgaRed   = video_on ? rgb_reg[11:8] : 4'b0000;
     assign vgaBlue  = video_on ? rgb_reg[3:0]  : 4'b0000;
     assign vgaGreen = video_on ? rgb_reg[7:4]  : 4'b0000;
+
 endmodule 
