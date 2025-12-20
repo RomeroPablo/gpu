@@ -8,7 +8,7 @@ opt_design
 place_design
 route_design
 
-write_bitstream -force top.bit
+write_bitstream -force gpu.bit
 
 set clkinfo [file join [pwd] clockInfo.txt]
 if {[file exists $clkinfo]} {

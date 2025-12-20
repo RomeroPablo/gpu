@@ -49,33 +49,31 @@ set_property PACKAGE_PIN U18 	 [get_ports btn]
 set_property IOSTANDARD LVCMOS33 [get_ports btn]
 
 # VGA
-set_property PACKAGE_PIN G19 [get_ports {vgaRed[0]}]				
-set_property PACKAGE_PIN H19 [get_ports {vgaRed[1]}]				
-set_property PACKAGE_PIN J19 [get_ports {vgaRed[2]}]				
-set_property PACKAGE_PIN N19 [get_ports {vgaRed[3]}]				
+# red
+set_property PACKAGE_PIN G19 [get_ports {outCol[8]}]
+set_property PACKAGE_PIN H19 [get_ports {outCol[9]}]
+set_property PACKAGE_PIN J19 [get_ports {outCol[10]}]
+set_property PACKAGE_PIN N19 [get_ports {outCol[11]}]
 
-set_property IOSTANDARD LVCMOS33 [get_ports {vgaRed[*]}]
+# green
+set_property PACKAGE_PIN J17 [get_ports {outCol[4]}]
+set_property PACKAGE_PIN H17 [get_ports {outCol[5]}]
+set_property PACKAGE_PIN G17 [get_ports {outCol[6]}]
+set_property PACKAGE_PIN D17 [get_ports {outCol[7]}]
 
-set_property PACKAGE_PIN N18 [get_ports {vgaBlue[0]}]				
-set_property PACKAGE_PIN L18 [get_ports {vgaBlue[1]}]				
-set_property PACKAGE_PIN K18 [get_ports {vgaBlue[2]}]				
-set_property PACKAGE_PIN J18 [get_ports {vgaBlue[3]}]				
+# blue
+set_property PACKAGE_PIN N18 [get_ports {outCol[0]}]
+set_property PACKAGE_PIN L18 [get_ports {outCol[1]}]
+set_property PACKAGE_PIN K18 [get_ports {outCol[2]}]
+set_property PACKAGE_PIN J18 [get_ports {outCol[3]}]
 
-set_property IOSTANDARD LVCMOS33 [get_ports {vgaBlue[*]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {outCol[*]}]
 
-set_property PACKAGE_PIN J17 [get_ports {vgaGreen[0]}]				
-set_property PACKAGE_PIN H17 [get_ports {vgaGreen[1]}]				
-set_property PACKAGE_PIN G17 [get_ports {vgaGreen[2]}]				
-set_property PACKAGE_PIN D17 [get_ports {vgaGreen[3]}]				
-
-set_property IOSTANDARD LVCMOS33 [get_ports {vgaGreen[*]}]
 
 set_property PACKAGE_PIN P19 [get_ports Hsync]						
-
 set_property IOSTANDARD LVCMOS33 [get_ports Hsync]
 
 set_property PACKAGE_PIN R19 [get_ports Vsync]						
-
 set_property IOSTANDARD LVCMOS33 [get_ports Vsync]
 
 ##USB-RS232 Interface

@@ -1,13 +1,18 @@
 `timescale 1ns/1ps
 
-module top( input wire clk, input wire btn, input wire [15:0] sw, output wire [15:0] led,
-            output wire [3:0] vgaRed,  output wire [3:0] vgaBlue,  output wire [3:0] vgaGreen,
-            output wire Hsync, output wire Vsync);
+/*
+what do we do?
+we want to draw lines on the screen
+let us define some points
+then, we shall programatically create lines between points <- done on the fpga
 
-    wire [11:0] col;
-    assign col = 12'b0000_1111_0000;
+points described as 1x10 bit width, 1x9 bit height
+*/
+
+module top( input wire clk, input wire btn, input wire [15:0] sw, output wire [15:0] led,
+            output wire [11:0] outCol, output wire Hsync, output wire Vsync);
 
     sw_pwm(clk, sw, led);
-    display(clk, btn, col, vgaRed, vgaBlue, vgaGreen, Hsync, Vsync);
+    display(clk, btn, outCol, Hsync, Vsync);
 
 endmodule
